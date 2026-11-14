@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Login | Roastery Coffee</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Theme Initialization -->
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('roastery_theme');
+        if (savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: radial-gradient(circle at center, var(--bg-cream-tint) 0%, var(--bg-secondary) 100%);
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+      background-color: var(--card-bg);
+      border-radius: 24px;
+      padding: 40px 36px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .auth-logo-badge {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--btn-espresso), var(--accent-caramel));
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 6px 16px rgba(73, 53, 43, 0.2);
+    }
+
+    .auth-title {
+      font-size: 1.85rem;
+      margin-bottom: 6px;
+    }
+
+    .auth-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-align: left;
+    }
+
+    .auth-footer-links {
+      margin-top: 24px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .auth-footer-links a {
+      color: var(--accent-caramel);
+      font-weight: 600;
+    }
+
+    .auth-demo-badge {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 6px 12px;
+      background-color: #FFF3E0;
+      color: #E65100;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 999px;
+      border: 1px solid #FFE0B2;
+    }
+  </style>
+</head>
+<body class="auth-page">
+
+  <div class="auth-card">
+    <div class="auth-logo-badge">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+        <line x1="6" y1="1" x2="6" y2="4"></line>
+        <line x1="10" y1="1" x2="10" y2="4"></line>
+        <line x1="14" y1="1" x2="14" y2="4"></line>
+      </svg>
+    </div>
+
+    <h1 class="auth-title">Welcome Back</h1>
+    <p class="auth-subtitle">Log in to your Roastery Coffee account</p>
+
+    <form class="auth-form" id="loginForm">
+      <div class="form-group">
+        <label for="loginEmail" class="form-label">Email or Phone</label>
+        <input type="text" class="form-control" id="loginEmail" placeholder="e.g. coffee.lover@domain.com" required />
+      </div>
+
+      <div class="form-group">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <label for="loginPassword" class="form-label">Password</label>
+          <a href="#" style="font-size: 0.8rem; color: var(--accent-caramel);" onclick="alert('Demo: Password reset is not active.'); return false;">Forgot?</a>
+        </div>
+        <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top: 6px; padding: 14px;">
+        Sign In
+      </button>
+    </form>
+
+    <div class="auth-footer-links">
+      Don't have an account? <a href="#" onclick="alert('Demo account creation is simulated.'); return false;">Register</a>
+      <div style="margin-top: 10px;">
+        <a href="index.html">&larr; Return to Roastery Store</a>
+      </div>
+    </div>
+
+    <div class="auth-demo-badge">
+      ⚡ Frontend Demo Mode
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Authenticating...';
+
+      setTimeout(() => {
+        alert(`Welcome back, ${email || 'Coffee Lover'}! (Demo login successful)`);
+        window.location.href = 'index.html';
+      }, 700);
+    });
+  </script>
+</body>
+</html>
